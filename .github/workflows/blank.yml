@@ -27,16 +27,21 @@ jobs:
 
       # Set up .NET environment
       - name: Set up .NET
-      - uses: actions/setup-dotnet@v3
-      with:
-dotnet-version: '8.0' #Uses .Net 8
+        uses: actions/setup-dotnet@v3
+        with:
+         dotnet-version: '8.0.401' 
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+          # Restore dependencies
+      - name: Restore dependencies
+        run: dotnet restore
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      # Build the project
+      - name: Build
+        run: dotnet build --configuration Release
+
+      # Run tests
+      - name: Test
+        run: dotnet test --configuration Release --no-build --verbosity normal
+
+
+         
