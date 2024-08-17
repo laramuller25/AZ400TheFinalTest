@@ -24,15 +24,15 @@ jobs:
 
       # Restore dependencies
       - name: Restore dependencies
-        run: dotnet restore "C:/Users/laram/OneDrive/Documents/Projects/YourProject.sln"
+        run: dotnet restore "C:/Users/laram/OneDrive/Documents/Projects/ConsoleApp1.sln"
 
       # Build the project and generate artifacts
       - name: Build
-        run: dotnet build "C:/Users/laram/OneDrive/Documents/Projects/YourProject.sln" --configuration Release
+        run: dotnet build "C:/Users/laram/OneDrive/Documents/Projects/ConsoleApp1.sln" --configuration Release
 
       # Publish build artifacts
       - name: Publish build artifacts
-        run: dotnet publish "C:/Users/laram/OneDrive/Documents/Projects/YourProject.sln" --configuration Release --output ./artifacts
+        run: dotnet publish "C:/Users/laram/OneDrive/Documents/Projects/ConsoleApp1.sln" --configuration Release --output ./artifacts
 
   test:
     runs-on: ubuntu-latest
@@ -50,23 +50,22 @@ jobs:
 
       # Restore dependencies
       - name: Restore dependencies
-        run: dotnet restore "C:/Users/laram/OneDrive/Documents/Projects/YourProject.sln"
+        run: dotnet restore "C:/Users/laram/OneDrive/Documents/Projects/ConsoleApp1.sln"
 
       # Run unit tests
       - name: Run Tests
-        run: dotnet test "C:/Users/laram/OneDrive/Documents/Projects/YourProject.sln" --configuration Release --no-build --verbosity normal
+        run: dotnet test "C:/Users/laram/OneDrive/Documents/Projects/ConsoleApp1.sln" --configuration Release --no-build --verbosity normal
 
       # Run code analysis (optional)
       - name: Run Code Analysis
-        run: dotnet build "C:/Users/laram/OneDrive/Documents/Projects/YourProject.sln" --configuration Release /p:RunCodeAnalysis=True
+        run: dotnet build "C:/Users/laram/OneDrive/Documents/Projects/ConsoleApp1.sln" --configuration Release /p:RunCodeAnalysis=True
 
       # Optional: Run code coverage and upload results
       - name: Run Code Coverage
-        run: dotnet test "C:/Users/laram/OneDrive/Documents/Projects/YourProject.sln" --configuration Release --collect:"XPlat Code Coverage"
+        run: dotnet test "C:/Users/laram/OneDrive/Documents/Projects/ConsoleApp1.sln" --configuration Release --collect:"XPlat Code Coverage"
 
       - name: Upload Code Coverage Report
         uses: actions/upload-artifact@v3
         with:
           name: code-coverage-report
           path: '**/*.xml'
-  
